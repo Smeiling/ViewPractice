@@ -1,0 +1,42 @@
+[
+  {
+    "title": "GridView",
+    "action": "com.sml.view.gridview",
+    "color": "#55f5c8bd"
+  },
+  {
+    "title": "ListView",
+    "action": "com.sml.view.listview",
+    "color": "#55f5a8bd"
+  },
+  {
+    "title": "CardView",
+    "action": "com.sml.view.cardview",
+    "color": "#55f575bd"
+  },
+  {
+    "title": "SlideView",
+    "action": "com.sml.view.slideview",
+    "color": "#55f550bd"
+  },
+  {
+    "title": "ScrollView",
+    "action": "com.sml.view.scrollview",
+    "color": "#55f220bd"
+  },
+  {
+    "title": "SearchView",
+    "action": "com.sml.view.searchview",
+    "color": "#55f200bd"
+  },
+  {
+    "title": "ScrollMenu",
+    "action": "com.sml.view.scrollmenu",
+    "color": "#55f20099"
+  },
+  {
+    "title": "MultiItemMenu",
+    "action": "com.sml.view.multiitemmenu",
+    "color": "#55f20077"
+  }
+]

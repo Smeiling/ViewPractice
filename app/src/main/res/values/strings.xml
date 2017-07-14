@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">View</string>
+    <string name="title_activity_grid">GridActivity</string>
+    <string name="title_activity_list_view">ListViewActivity</string>
+    <string name="title_activity_card_view">CardViewActivity</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_slide_view">SlideViewActivity</string>
+    <string name="title_activity_scroll_view">ScrollViewActivity</string>
+    <string name="label_cancel">取消</string>
+    <string name="title_activity_search_view">SearchViewActivity</string>
+    <string name="label_search">搜索</string>
+</resources>
