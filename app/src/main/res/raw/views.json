@@ -2,41 +2,56 @@
   {
     "title": "GridView",
     "action": "com.sml.view.gridview",
-    "color": "#55f5c8bd"
+    "color": "#FFFFF1"
   },
   {
     "title": "ListView",
     "action": "com.sml.view.listview",
-    "color": "#55f5a8bd"
+    "color": "#E0F2F1"
   },
   {
     "title": "CardView",
     "action": "com.sml.view.cardview",
-    "color": "#55f575bd"
+    "color": "#B2DFDB"
   },
   {
     "title": "SlideView",
     "action": "com.sml.view.slideview",
-    "color": "#55f550bd"
+    "color": "#80CBC4"
   },
   {
     "title": "ScrollView",
     "action": "com.sml.view.scrollview",
-    "color": "#55f220bd"
+    "color": "#4DB6AC"
   },
   {
     "title": "SearchView",
     "action": "com.sml.view.searchview",
-    "color": "#55f200bd"
+    "color": "#26A69A"
   },
   {
     "title": "ScrollMenu",
     "action": "com.sml.view.scrollmenu",
-    "color": "#55f20099"
+    "color": "#009688"
   },
   {
     "title": "MultiItemMenu",
     "action": "com.sml.view.multiitemmenu",
-    "color": "#55f20077"
+    "color": "#00897B"
+  },
+  {
+    "title": "ScrollListView",
+    "action": "com.sml.view.scrolllistview",
+    "color": "#00796B"
+  },
+  {
+    "title": "NONE",
+    "action": "com.sml.view.scrolllistview",
+    "color": "#00695C"
+  },
+  {
+    "title": "NONE",
+    "action": "com.sml.view.scrolllistview",
+    "color": "#004D40"
   }
 ]

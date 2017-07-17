@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFFFFF"
+        android:fadingEdge="none"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#5533b5e5">
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/btn1"
+                    style="@style/radioButton"
+                    android:text="one" />
+
+                <RadioButton
+                    android:id="@+id/btn2"
+                    style="@style/radioButton"
+                    android:text="two" />
+
+                <RadioButton
+                    android:id="@+id/btn3"
+                    style="@style/radioButton"
+                    android:text="three" />
+
+                <RadioButton
+                    android:id="@+id/btn4"
+                    style="@style/radioButton"
+                    android:text="four" />
+
+                <RadioButton
+                    android:id="@+id/btn5"
+                    style="@style/radioButton"
+                    android:text="five" />
+            </RadioGroup>
+
+            <ImageView
+                android:id="@+id/img1"
+                android:layout_width="100dp"
+                android:layout_height="4dp"
+                android:layout_alignParentBottom="true"
+                android:background="#33b5e5" />
+        </RelativeLayout>
+    </HorizontalScrollView>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+
+</LinearLayout>

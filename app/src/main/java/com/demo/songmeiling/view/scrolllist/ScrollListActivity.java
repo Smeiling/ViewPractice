@@ -1,11 +1,11 @@
-package com.demo.songmeiling.view.scrollmenu;
+package com.demo.songmeiling.view.scrolllist;
 
-import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Parcelable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,9 +21,9 @@ import com.demo.songmeiling.view.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScrollMenuActivity extends Activity implements RadioGroup.OnCheckedChangeListener {
+public class ScrollListActivity extends FragmentActivity implements RadioGroup.OnCheckedChangeListener {
 
-    public static final String TAG = ScrollMenuActivity.class.getSimpleName();
+    public static final String TAG = ScrollListActivity.class.getSimpleName();
 
     private RadioGroup mRadioGroup;
     private RadioButton mRadioButton1;
@@ -37,12 +37,13 @@ public class ScrollMenuActivity extends Activity implements RadioGroup.OnChecked
     private ViewPager mViewPager;   //下方的可横向拖动的控件
     private ArrayList<View> mViews;//用来存放下方滚动的layout(layout_1,layout_2,layout_3)
 
+    private List<Fragment> fragmentList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scroll_menu);
-
+        setContentView(R.layout.activity_scroll_list);
 
         iniController();
         iniListener();
@@ -53,6 +54,7 @@ public class ScrollMenuActivity extends Activity implements RadioGroup.OnChecked
         mRadioButton1.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         mViewPager.setCurrentItem(1);
         mCurrentCheckedRadioLeft = getCurrentCheckedRadioLeft();
+
     }
 
 
@@ -66,9 +68,19 @@ public class ScrollMenuActivity extends Activity implements RadioGroup.OnChecked
         mViews.add(getLayoutInflater().inflate(R.layout.layout_0, null));
         mViews.add(getLayoutInflater().inflate(R.layout.layout_1, null));
         mViews.add(getLayoutInflater().inflate(R.layout.layout_0, null));
+        fragmentList.add(new FragmentA());
+        fragmentList.add(new FragmentA());
+        fragmentList.add(new FragmentB());
+        fragmentList.add(new FragmentC());
+        fragmentList.add(new FragmentD());
+        fragmentList.add(new FragmentE());
+        fragmentList.add(new FragmentE());
 
-        mViewPager.setAdapter(new MyPagerAdapter());//设置ViewPager的适配器
+        FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager(), fragmentList);
+//        mViewPager.setAdapter(new ScrollListActivity.MyPagerAdapter());//设置ViewPager的适配器
+        mViewPager.setAdapter(adapter);
     }
+
 
     /**
      * RadioGroup点击CheckedChanged监听
@@ -180,7 +192,7 @@ public class ScrollMenuActivity extends Activity implements RadioGroup.OnChecked
         mRadioGroup.setOnCheckedChangeListener(this);
 
 
-        mViewPager.setOnPageChangeListener(new MyPagerOnPageChangeListener());
+        mViewPager.setOnPageChangeListener(new ScrollListActivity.MyPagerOnPageChangeListener());
     }
 
     private void iniController() {
