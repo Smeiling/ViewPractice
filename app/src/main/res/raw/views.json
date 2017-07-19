@@ -50,8 +50,8 @@
     "color": "#00695C"
   },
   {
-    "title": "NONE",
-    "action": "com.sml.view.scrolllistview",
+    "title": "VerticalViewSlider",
+    "action": "com.sml.view.verticalviewslider",
     "color": "#004D40"
   }
 ]

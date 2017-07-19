@@ -1,12 +1,14 @@
 package com.demo.songmeiling.view.verticalviewpager;
 
 import android.content.Context;
+import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.ScaleAnimation;
 import android.widget.Scroller;
 
 import java.util.List;
@@ -85,6 +87,9 @@ public class VerticalViewPager extends ViewGroup {
      * @param viewList
      */
     public void setViewList(List<View> viewList) {
+
+        Log.d(TAG, "setViewList");
+
         //设置时先清空原有的view
         if (getChildCount() > 0) {
             removeAllViews();
@@ -107,6 +112,9 @@ public class VerticalViewPager extends ViewGroup {
      */
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
+
+        Log.d(TAG, "onLayout");
+
         //First child view's topY = 0
         int childHeight = 0;
         for (int i = 0; i < getChildCount(); i++) {
@@ -129,6 +137,9 @@ public class VerticalViewPager extends ViewGroup {
      */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
+        Log.d(TAG, "onMeasure");
+
         // 其中包含setMeasuredDimension方法，它是一个很关键的函数，它对View的成员变量mMeasuredWidth和mMeasuredHeight变量赋值
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
@@ -142,6 +153,9 @@ public class VerticalViewPager extends ViewGroup {
      * 根据目前的位置滚动到下一个视图的位置
      */
     public void snapToDestination() {
+
+        Log.d(TAG, "snapToDestination");
+
         // 这个高度是View可见部分的高度
         int screenHeight = getHeight();
         // 根据View的高度以及滑动的值来判断是哪个View
@@ -150,6 +164,9 @@ public class VerticalViewPager extends ViewGroup {
     }
 
     public void snapToScreen(int whichScreen) {
+
+        Log.d(TAG, "snapToScreen");
+
         whichScreen = Math.max(0, Math.min(whichScreen, getChildCount() - 1));
         if (getScrollY() != (whichScreen * getHeight())) {
             final int delta = whichScreen * getHeight() - getScrollY();
@@ -206,6 +223,9 @@ public class VerticalViewPager extends ViewGroup {
      */
     @Override
     public void computeScroll() {
+
+        Log.d(TAG, "computeScroll");
+
         //super.computeScroll();
         //判断滑动是否结束，结束返回true
         if (scroller.computeScrollOffset()) {
@@ -217,6 +237,9 @@ public class VerticalViewPager extends ViewGroup {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
+        Log.d(TAG, "onTouchEvent");
+
         if (velocityTracker == null) {
             // 使用obtain方法得到VelocityTracker的一个对象
             velocityTracker = VelocityTracker.obtain();
@@ -246,6 +269,8 @@ public class VerticalViewPager extends ViewGroup {
                     Log.w(TAG, "向上滑动最后一页 or 向下滑动第一页");
                 } else {
                     scrollBy(0, deltaY);
+                    Log.w(TAG, "scrollBy" + deltaY);
+
                 }
                 Log.w(TAG, "onTouchEvent = ACTION_MOVE");
                 break;
@@ -271,6 +296,7 @@ public class VerticalViewPager extends ViewGroup {
                     this.velocityTracker = null;
                 }
                 touchState = TOUCH_STATE_REST;
+                Log.w(TAG, "onTouchEvent = ACTION_UP");
                 break;
 
             case MotionEvent.ACTION_CANCEL:
@@ -285,15 +311,21 @@ public class VerticalViewPager extends ViewGroup {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+
+        Log.d(TAG, "onInterceptTouchEvent");
+
         switch (ev.getAction()) {
             case MotionEvent.ACTION_MOVE:
+                Log.w(TAG, "onInterceptTouchEvent = ACTION_MOVE");
                 break;
             case MotionEvent.ACTION_DOWN:
+                Log.w(TAG, "onInterceptTouchEvent = ACTION_DOWN");
                 touchState = scroller.isFinished() ? TOUCH_STATE_REST
                         : TOUCH_STATE_SCROLLING;
                 break;
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
+                Log.w(TAG, "onInterceptTouchEvent = ACTION_UP");
                 touchState = TOUCH_STATE_REST;
                 break;
         }
