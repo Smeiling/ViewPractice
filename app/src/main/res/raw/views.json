@@ -45,8 +45,8 @@
     "color": "#00796B"
   },
   {
-    "title": "NONE",
-    "action": "com.sml.view.scrolllistview",
+    "title": "VerticalViewPager",
+    "action": "com.sml.view.verticalviewpager",
     "color": "#00695C"
   },
   {

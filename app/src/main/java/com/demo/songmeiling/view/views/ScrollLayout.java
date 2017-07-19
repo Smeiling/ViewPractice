@@ -132,6 +132,8 @@ public class ScrollLayout extends LinearLayout {
                 mScroller.startScroll(getScrollX(), 0, dx, 0);
                 invalidate();
                 break;
+            default:
+                break;
         }
         return super.onTouchEvent(event);
     }

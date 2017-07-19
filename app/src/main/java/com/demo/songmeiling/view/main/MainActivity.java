@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.*;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
+
 import com.demo.songmeiling.view.utils.DensityUtil;
 import com.demo.songmeiling.view.utils.LogUtil;
 import com.demo.songmeiling.view.utils.SystemBarTintManager;
@@ -80,6 +81,9 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                         break;
                     case MotionEvent.ACTION_UP:
                         LogUtil.w(TAG, "LV UP");
+                        break;
+                    default:
+                        break;
                 }
                 return false;
             }
