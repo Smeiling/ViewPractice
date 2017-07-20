@@ -9,10 +9,10 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.demo.songmeiling.view.R;
-import com.demo.songmeiling.view.searchview.SearchViewActivity;
 
 import java.util.List;
 
@@ -30,8 +30,10 @@ public class VerticalViewSlider extends ViewGroup {
     private VelocityTracker velocityTracker;
     //无事件状态
     private static final int TOUCH_STATE_REST = 0;
-    //处于拖动的状态
-    private static final int TOUCH_STATE_SCROLLING = 1;
+    //处于向上拖动的状态
+    private static final int TOUCH_STATE_SCROLLING_UP = 1;
+    //处于向下拖动的状态
+    private static final int TOUCH_STATE_SCROLLING_DOWN = 2;
     //可以切换页面的最小滑动速度
     private static final int SNAP_VELOCITY = 500;
     //当前所处的状态
@@ -39,6 +41,9 @@ public class VerticalViewSlider extends ViewGroup {
 
     private float lastMotionY;
     private int lastDistance = 0;
+
+    private int lastPadding = 0;
+    private int slideDistance = 0;
 
     private Context mContext;
 
@@ -73,10 +78,13 @@ public class VerticalViewSlider extends ViewGroup {
             //leftX,topY,rightX,bottomY
             if (i == curScreen) {
                 //childView.setVisibility(View.GONE);
-                childView.layout(0, 0, childWidth, childView.getMeasuredHeight());
-            } else if (i == (curScreen + 1) && touchState == TOUCH_STATE_SCROLLING) {
+                //当前页面显示位置
+                childView.layout(0, slideDistance, childWidth, childView.getMeasuredHeight() + slideDistance);
+            } else if (i == (curScreen + 1) && touchState == TOUCH_STATE_SCROLLING_UP) {
+                //滑动页显示位置
                 childView.layout(0, childView.getMeasuredHeight() - lastDistance, childWidth, childView.getMeasuredHeight() * 2 - lastDistance);
             } else {
+                //其他页面显示位置
                 childView.layout(0, childView.getMeasuredHeight(), childWidth, childView.getMeasuredHeight() * 2);
             }
         }
@@ -99,14 +107,11 @@ public class VerticalViewSlider extends ViewGroup {
 
         for (int i = 0; i < getChildCount(); i++) {
             getChildAt(i).measure(widthMeasureSpec, heightMeasureSpec);
-
         }
     }
 
 
     public void setViewList(List<View> viewList) {
-        Log.d(TAG, "setViewList");
-
         //设置时先清空原有的view
         if (getChildCount() > 0) {
             removeAllViews();
@@ -124,6 +129,15 @@ public class VerticalViewSlider extends ViewGroup {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
+
+        if (velocityTracker == null) {
+            // 使用obtain方法得到VelocityTracker的一个对象
+            velocityTracker = VelocityTracker.obtain();
+        }
+        // 将当前的触摸事件传递给VelocityTracker对象
+        velocityTracker.addMovement(event);
+
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 Log.w(TAG, "touch DOWN");
@@ -131,27 +145,40 @@ public class VerticalViewSlider extends ViewGroup {
                 break;
             case MotionEvent.ACTION_MOVE:
                 Log.w(TAG, "touch MOVE");
+                final VelocityTracker velocityTracker = this.velocityTracker;
+                //计算当前的速度
+                velocityTracker.computeCurrentVelocity(1000);
+                //垂直方向滑动速度
+                int velocityY = (int) velocityTracker.getYVelocity();
+                Log.w(TAG, "velocity Y = " + velocityY);
+                Log.w(TAG, "dura = " + getAnimDuration(velocityY));
                 int distance = (int) (lastMotionY - event.getY());
                 if (Math.abs(distance) > validDistance) {
                     Log.w(TAG, "valid slide");
                     if (distance > 0) {
                         Log.w(TAG, "slide up");
-                        touchState = TOUCH_STATE_SCROLLING;
-                        getChildAt(curScreen).setPadding(Math.abs(distance / 8), Math.abs(distance / 8), Math.abs(distance / 8), 0);
+                        touchState = TOUCH_STATE_SCROLLING_UP;
+                        getChildAt(curScreen).setPadding(Math.abs(distance / 9), Math.abs(distance / 9), Math.abs(distance / 9), 0);
+                        lastPadding = Math.abs(distance / 9);
                         lastDistance = Math.abs(distance);
                     } else {
                         Log.w(TAG, "slide down");
                     }
+                } else {
+                    touchState = TOUCH_STATE_REST;
+                }
+
+                if (this.velocityTracker != null) {
+                    this.velocityTracker.recycle();
+                    this.velocityTracker = null;
                 }
                 break;
             case MotionEvent.ACTION_UP:
-                if (touchState == TOUCH_STATE_SCROLLING) {
-                    doAnimate();
+                if (touchState == TOUCH_STATE_SCROLLING_UP) {
                     performAnimate(true);
+                    doAnimate();
+                } else {
 
-                    curScreen++;
-                    lastDistance = 0;
-                    touchState = TOUCH_STATE_REST;
                 }
                 break;
         }
@@ -175,7 +202,27 @@ public class VerticalViewSlider extends ViewGroup {
 
 
     private void doAnimate() {
-        getChildAt(curScreen).startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.zoom_in));
+        Log.w(TAG, "doAnimate");
+        Animation anim = AnimationUtils.loadAnimation(mContext, R.anim.zoom_in);
+        anim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                curScreen++;
+                lastDistance = 0;
+                touchState = TOUCH_STATE_REST;
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        getChildAt(curScreen).startAnimation(anim);
 //        getChildAt(curScreen + 1).setVisibility(View.VISIBLE);
 //        getChildAt(curScreen + 1).startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.show_from_bottom));
 //        getChildAt(curScreen).setVisibility(View.GONE);
@@ -223,6 +270,7 @@ public class VerticalViewSlider extends ViewGroup {
      * @param expand
      */
     private void performAnimate(boolean expand) {
+        Log.w(TAG, "performAnimate");
         ViewWrapper wrapper = new ViewWrapper(getChildAt(curScreen + 1));
         ViewWrapper curView = new ViewWrapper(getChildAt(curScreen));
         //Log.w(TAG, "screenWidth = " + screenWidth);
@@ -235,5 +283,17 @@ public class VerticalViewSlider extends ViewGroup {
             ObjectAnimator.ofInt(wrapper, "bottom", getChildAt(curScreen + 1).getMeasuredHeight() * 2).setDuration(500).start();
             //ObjectAnimator.ofInt(curView, "padding", 0).setDuration(500).start();
         }
+    }
+
+    private int getAnimDuration(int velocity) {
+        if (velocity == 0) {
+            return 500;
+        }
+        int duration = ((getChildAt(curScreen + 1).getMeasuredHeight() - lastDistance) * 1000) / Math.abs(velocity);
+        Log.w(TAG, "duration = " + duration);
+        if (duration == 0) {
+            return 100;
+        }
+        return duration;
     }
 }
