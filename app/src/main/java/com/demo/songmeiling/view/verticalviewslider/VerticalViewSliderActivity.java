@@ -31,7 +31,7 @@ public class VerticalViewSliderActivity extends Activity {
     @BindView(R.id.btn_animate)
     Button btnAnimate;
     @BindView(R.id.slider)
-    VerticalViewSlider slider;
+    VerticalViewSlider2 slider;
 
     private int curScreen = 0;
     private List<View> viewList = new ArrayList<View>();

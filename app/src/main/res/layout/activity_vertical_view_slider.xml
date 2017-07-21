@@ -60,9 +60,9 @@
         android:text="BUTTON"
         android:visibility="gone" />
 
-    <com.demo.songmeiling.view.verticalviewslider.VerticalViewSlider
+    <com.demo.songmeiling.view.verticalviewslider.VerticalViewSlider2
         android:id="@+id/slider"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.demo.songmeiling.view.verticalviewslider.VerticalViewSlider>
+        android:layout_height="match_parent"></com.demo.songmeiling.view.verticalviewslider.VerticalViewSlider2>
 
 </FrameLayout>
