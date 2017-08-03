@@ -1,6 +1,8 @@
 package com.demo.songmeiling.view.verticalviewslider;
 
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -14,6 +16,7 @@ import android.view.animation.AnimationUtils;
 
 import com.demo.songmeiling.view.R;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -50,12 +53,6 @@ public class VerticalViewSlider2 extends ViewGroup {
     private Context mContext;
 
     //sml
-
-    private int prePadding;
-    private int curPadding;
-
-    private int curDistance;
-    private int nextDistance;
 
     //sml
 
@@ -149,7 +146,6 @@ public class VerticalViewSlider2 extends ViewGroup {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-
         if (velocityTracker == null) {
             // 使用obtain方法得到VelocityTracker的一个对象
             velocityTracker = VelocityTracker.obtain();
@@ -205,6 +201,7 @@ public class VerticalViewSlider2 extends ViewGroup {
                     doAnimate(ZOOM_IN);
                 } else {
                     Log.w(TAG, "action_up");
+
                     performAnimate(false);
                     doAnimate(ZOOM_OUT);
                 }
@@ -246,6 +243,7 @@ public class VerticalViewSlider2 extends ViewGroup {
                     lastDistance = 0;
                     touchState = TOUCH_STATE_REST;
                     zoomInPadding = getChildAt(curScreen).getMeasuredHeight() / 10;
+                    Log.w(TAG, "onAnimationEnd zoomInPadding = " + zoomInPadding);
                 }
 
                 @Override
@@ -308,6 +306,7 @@ public class VerticalViewSlider2 extends ViewGroup {
     private void performAnimate(boolean expand) {
         Log.w(TAG, "performAnimate");
         ViewWrapper wrapper = null;
+        ViewWrapper pre = null;
         //Log.w(TAG, "screenWidth = " + screenWidth);
         if (expand) {
             wrapper = new ViewWrapper(getChildAt(curScreen + 1));
@@ -315,12 +314,28 @@ public class VerticalViewSlider2 extends ViewGroup {
             ObjectAnimator.ofInt(wrapper, "bottom", getChildAt(curScreen + 1).getMeasuredHeight()).setDuration(500).start();
             //ObjectAnimator.ofInt(curView, "padding", getChildAt(curScreen).getMeasuredWidth() / 2).setDuration(500).start();
         } else {
-            wrapper = new ViewWrapper(getChildAt(curScreen));
-            ObjectAnimator.ofInt(wrapper, "top", getChildAt(curScreen).getMeasuredHeight()).setDuration(500).start();
-            ObjectAnimator.ofInt(wrapper, "bottom", getChildAt(curScreen).getMeasuredHeight() * 2).setDuration(500).start();
-            //ObjectAnimator.ofInt(curView, "padding", 0).setDuration(500).start();
+//            wrapper = new ViewWrapper(getChildAt(curScreen));
+//            ObjectAnimator.ofInt(wrapper, "top", getChildAt(curScreen).getMeasuredHeight()).setDuration(500).start();
+//            ObjectAnimator.ofInt(wrapper, "bottom", getChildAt(curScreen).getMeasuredHeight() * 2).setDuration(500).start();
+//            //ObjectAnimator.ofInt(curView, "padding", 0).setDuration(500).start();
+////            pre = new ViewWrapper(getChildAt(curScreen - 1));
+////            ObjectAnimator.ofInt(pre, "padding", 0).setDuration(500).start();
+            dragUp();
         }
     }
+
+    private void dragUp() {
+        AnimatorSet animatorSet = new AnimatorSet();
+        ViewWrapper wrapper = new ViewWrapper(getChildAt(curScreen));
+        ViewWrapper pd = new ViewWrapper(getChildAt(curScreen - 1));
+        ObjectAnimator objectAnimator1 = ObjectAnimator.ofInt(wrapper, "top", getChildAt(curScreen).getMeasuredHeight());
+        ObjectAnimator objectAnimator2 = ObjectAnimator.ofInt(wrapper, "bottom", getChildAt(curScreen).getMeasuredHeight() * 2);
+        ObjectAnimator objectAnimator3 = ObjectAnimator.ofInt(pd, "padding", 0);
+        animatorSet.play(objectAnimator3).with(objectAnimator2).with(objectAnimator1);
+        animatorSet.setDuration(500);
+        animatorSet.start();
+    }
+
 
     private int getAnimDuration(int velocity) {
         if (velocity == 0) {

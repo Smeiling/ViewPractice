@@ -42,5 +42,6 @@ public class VerticalViewPagerActivity extends Activity {
                 Log.w(TAG, "pager = " + postion);
             }
         });
+
     }
 }

@@ -124,6 +124,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".horizontalviewslider.HorizontalViewSliderActivity"
+            android:label="@string/title_activity_horizontal_view_slider"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.sml.view.horizontalviewslider" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

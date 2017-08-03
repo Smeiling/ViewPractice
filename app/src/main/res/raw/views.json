@@ -53,5 +53,10 @@
     "title": "VerticalViewSlider",
     "action": "com.sml.view.verticalviewslider",
     "color": "#004D40"
+  },
+  {
+    "title": "HorizontalViewSlider",
+    "action": "com.sml.view.horizontalviewslider",
+    "color": "#002F35"
   }
 ]
