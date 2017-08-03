@@ -37,5 +37,13 @@
  -                        <!-- View background -->
         <attr name="android:background" />
     </declare-styleable>
+    <declare-styleable name="BezierRoundView">
+        <attr name="color_bez" format="color"/>
+        <attr name="color_touch" format="color"/>
+        <attr name="color_stroke" format="color"/>
+        <attr name="time_animator" format="integer"/>
+        <attr name="round_count" format="integer"/>
+        <attr name="bezier_radius" format="dimension"/>
 
+    </declare-styleable>
 </resources>

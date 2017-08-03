@@ -58,5 +58,10 @@
     "title": "HorizontalViewSlider",
     "action": "com.sml.view.horizontalviewslider",
     "color": "#002F35"
+  },
+  {
+    "title": "BezierViewPager",
+    "action": "com.sml.view.bezierviewpager",
+    "color": "#000020"
   }
 ]
