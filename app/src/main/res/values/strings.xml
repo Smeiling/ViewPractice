@@ -11,4 +11,5 @@
     <string name="label_search">搜索</string>
     <string name="title_activity_horizontal_view_slider">HorizontalViewSliderActivity</string>
     <string name="title_activity_bezier_view_pager">BezierViewPager</string>
+    <string name="title_activity_branch_view_pager">BranchViewPagerActivity</string>
 </resources>

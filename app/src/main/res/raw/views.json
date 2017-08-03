@@ -63,5 +63,10 @@
     "title": "BezierViewPager",
     "action": "com.sml.view.bezierviewpager",
     "color": "#000020"
+  },
+  {
+    "title": "BranchViewPager",
+    "action": "com.sml.view.branchviewpager",
+    "color": "#3399FF"
   }
 ]

@@ -143,6 +143,17 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".branchviewpager.BranchViewPagerActivity"
+            android:label="@string/title_activity_branch_view_pager"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <intent-filter>
+                <action android:name="com.sml.view.branchviewpager" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
 
         </activity>
     </application>
