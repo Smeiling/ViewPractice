@@ -14,4 +14,5 @@
 
     <color name="white">#FFFFFFFF</color>
     <color name="white_pressed">#FFCFCFCF</color>
+    <color name="transBlack">#55000000</color>
 </resources>

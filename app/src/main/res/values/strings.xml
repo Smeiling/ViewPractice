@@ -12,4 +12,9 @@
     <string name="title_activity_horizontal_view_slider">HorizontalViewSliderActivity</string>
     <string name="title_activity_bezier_view_pager">BezierViewPager</string>
     <string name="title_activity_branch_view_pager">BranchViewPagerActivity</string>
+    <string name="article_title">我的\n标题</string>
+    <string name="label_by">by</string>
+    <string name="branch_recommand">Branch\n推荐</string>
+    <string name="article_content">最近项目要开发一个新版本，发现项目中许多布局大致都相同改动不大，并且布局中代码量非常之多不好阅读，针对项目相关内容进行了封装。实现思路：通过继承RelativeLayout实现动态添加所需要的控件，TextView ImageView View 一共封装了8个控件 leftImg reightImg leftTv rightTv centerTv leftTopTv leftBottomTv bottomLine 根据需要动态添加AddView(View) 通过LayoutParams.addRule()设置控件的位置，LayoutParams.setMargins()设置大小进行所需控件的控制实现以下效果：</string>
+    <string name="app_name_branch">branch</string>
 </resources>

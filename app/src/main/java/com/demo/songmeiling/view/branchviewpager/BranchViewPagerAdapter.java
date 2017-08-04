@@ -5,11 +5,16 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
+import com.demo.songmeiling.view.R;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +27,7 @@ public class BranchViewPagerAdapter extends PagerAdapter implements ViewPager.On
     private Context context;
     private OnTouchListener mOnTouchListener;
     private int mPosition = 0;
+    private List<View> views;
 
     public BranchViewPagerAdapter(Context context, List<Integer> list) {
         this.context = context;
@@ -63,7 +69,7 @@ public class BranchViewPagerAdapter extends PagerAdapter implements ViewPager.On
                 return true;
             }
         });
-
+        Log.w("sml", "instantiateItem = " + position);
         container.addView(iv);
         return iv;
     }
