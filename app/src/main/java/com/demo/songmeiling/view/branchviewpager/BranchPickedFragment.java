@@ -10,15 +10,14 @@ import android.view.ViewGroup;
 import com.demo.songmeiling.view.R;
 
 /**
- * Created by songmeiling on 2017/8/4.
+ * Created by songmeiling on 2017/8/7.
  */
 
-public class BranchFragment extends Fragment {
+public class BranchPickedFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.branch_page_view, null);
+        return inflater.inflate(R.layout.editors_pick_view, null);
     }
 }

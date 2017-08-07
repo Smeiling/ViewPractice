@@ -41,7 +41,8 @@
                 android:padding="10dp"
                 android:text="@string/branch_recommand"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:textStyle="italic" />
 
         </LinearLayout>
 

@@ -3,7 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorBlack">#000000</color>
+    <color name="colorBlack">#686363</color>
 
     <color name="red_normal">#FF0000</color>
     <color name="red_pressed">#FF6666</color>
@@ -12,7 +12,10 @@
     <color name="purple_normal">#9932CC</color>
     <color name="purple_pressed">#9F79EE</color>
 
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#f3f3f3</color>
     <color name="white_pressed">#FFCFCFCF</color>
     <color name="transBlack">#55000000</color>
+    <color name="editor_pick_bg">#FFECE9</color>
+    <color name="bgBlack">#373737</color>
+    <color name="link_color">#98b5bc</color>
 </resources>

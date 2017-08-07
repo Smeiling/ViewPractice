@@ -1,22 +1,16 @@
 package com.demo.songmeiling.view.branchviewpager;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.os.HandlerThread;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 
 import com.demo.songmeiling.view.R;
-import com.demo.songmeiling.view.scrolllist.FragmentA;
 import com.demo.songmeiling.view.scrolllist.FragmentAdapter;
-import com.demo.songmeiling.view.scrolllist.FragmentB;
-import com.demo.songmeiling.view.scrolllist.FragmentC;
-import com.demo.songmeiling.view.scrolllist.FragmentD;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,10 +38,11 @@ public class BranchViewPagerActivity extends AppCompatActivity {
         final BranchViewPagerAdapter adapter = new BranchViewPagerAdapter(this, list);
 
         List<Fragment> fragments = new ArrayList<>();
-        fragments.add(new BranchFragment());
-        fragments.add(new BranchFragment());
-        fragments.add(new BranchFragment());
-        fragments.add(new BranchFragment());
+
+        fragments.add(new BranchPickedFragment());
+        fragments.add(new BranchRecommendFragment());
+        fragments.add(new BranchPickedFragment());
+        fragments.add(new RankListFragment());
         FragmentAdapter adapter1 = new FragmentAdapter(getSupportFragmentManager(), fragments);
 
         viewPager.setAdapter(adapter1);
