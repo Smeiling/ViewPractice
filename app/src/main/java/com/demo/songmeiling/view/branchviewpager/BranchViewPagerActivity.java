@@ -41,7 +41,7 @@ public class BranchViewPagerActivity extends AppCompatActivity {
 
         fragments.add(new BranchPickedFragment());
         fragments.add(new BranchRecommendFragment());
-        fragments.add(new BranchPickedFragment());
+        fragments.add(new BranchSplitFragment());
         fragments.add(new RankListFragment());
         FragmentAdapter adapter1 = new FragmentAdapter(getSupportFragmentManager(), fragments);
 

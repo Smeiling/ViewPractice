@@ -22,4 +22,5 @@
     <string name="label_title">我是标题</string>
     <string name="label_theme">我是主题</string>
     <string name="label_author">by </string>
+    <string name="branch_rec">Branch recommaned</string>
 </resources>

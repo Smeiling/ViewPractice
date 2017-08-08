@@ -18,4 +18,7 @@
     <color name="editor_pick_bg">#FFECE9</color>
     <color name="bgBlack">#373737</color>
     <color name="link_color">#98b5bc</color>
+    <color name="bgBottom">#EE8888</color>
+    <color name="bgMid">#ffd966</color>
+
 </resources>
