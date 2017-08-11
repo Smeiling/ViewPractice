@@ -20,5 +20,6 @@
     <color name="link_color">#98b5bc</color>
     <color name="bgBottom">#EE8888</color>
     <color name="bgMid">#ffd966</color>
+    <color name="bg_total">#2B4E5C</color>
 
 </resources>

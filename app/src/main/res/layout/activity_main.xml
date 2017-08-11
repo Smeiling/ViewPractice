@@ -1,40 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.demo.songmeiling.view.views.SlideLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<com.demo.songmeiling.view.views.SlideLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_start"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:id="@+id/ll"
-        android:clickable="true"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:text="START SERVICE" />
+
+    <Button
+        android:id="@+id/btn_stop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="STOP SERVICE" />
 
     <include
-            android:id="@+id/ll_header"
-            layout="@layout/view_header"/>
+        android:id="@+id/ll_header"
+        layout="@layout/view_header" />
+
     <LinearLayout
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <EditText android:layout_width="200dp"
-                  android:id="@+id/btn_anim"
-                  android:text="BUTTON"
-                  android:padding="5dp"
-                  android:background="@drawable/bg_search_bar"
-                  android:layout_height="wrap_content"/>
-        <TextView android:layout_width="30dp"
-                  android:gravity="center"
-                  android:text="@string/label_cancel"
-                  android:id="@+id/tv_cancel"
-                  android:visibility="gone"
-                  android:layout_marginLeft="10dp"
-                  android:layout_height="wrap_content"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/btn_anim"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_search_bar"
+            android:padding="5dp"
+            android:text="BUTTON" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="@string/label_cancel"
+            android:visibility="gone" />
     </LinearLayout>
 
     <ListView
-            android:id="@+id/lv"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="match_parent">
+        android:id="@+id/lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
     </ListView>
 

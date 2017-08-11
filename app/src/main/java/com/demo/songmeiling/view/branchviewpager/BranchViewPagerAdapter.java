@@ -38,6 +38,7 @@ public class BranchViewPagerAdapter extends PagerAdapter implements ViewPager.On
         this.mOnTouchListener = onTouchListener;
     }
 
+
     public int getPosition() {
         return mPosition;
     }

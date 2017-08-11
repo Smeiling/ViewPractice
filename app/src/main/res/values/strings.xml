@@ -23,4 +23,5 @@
     <string name="label_theme">我是主题</string>
     <string name="label_author">by </string>
     <string name="branch_rec">Branch recommaned</string>
+    <string name="title_activity_fragment">FragmentActivity</string>
 </resources>

@@ -27,7 +27,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends Activity implements View.OnTouchListener {
+public class MainActivity extends Activity implements View.OnTouchListener, View.OnClickListener {
 
     public static final String TAG = "SML";
 
@@ -56,7 +56,8 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        findViewById(R.id.btn_start).setOnClickListener(this);
+        findViewById(R.id.btn_stop).setOnClickListener(this);
         getScreenParams();
         setData();
         validDistance = ViewConfiguration.get(this).getScaledTouchSlop();
@@ -235,6 +236,25 @@ public class MainActivity extends Activity implements View.OnTouchListener {
             Log.w(TAG, "params = " + params.weight + "," + params.width + "," + params.height);
         }
         return false;
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(this, MainService.class);
+        switch (view.getId()) {
+            case R.id.btn_start:
+                Log.d("MainService", "onStart clicked");
+                startService(intent);
+                break;
+            case R.id.btn_stop:
+                Log.d("MainService", "onStop clicked");
+                stopService(intent);
+                break;
+            default:
+                break;
+        }
+
     }
 
     private static class ViewWrapper {
